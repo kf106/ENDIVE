@@ -1,0 +1,9 @@
+# SPDX-FileCopyrightText: 2026 Keir Finlow-Bates
+#
+# SPDX-License-Identifier: MIT
+#
+## Managed dependency: TinyUSB stack (MSC + CDC composite)
+dependencies:
+  espressif/esp_tinyusb: "^1.4.2"
+  espressif/led_strip: "^3.0.0"
+  idf: "^5.0"

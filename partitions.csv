@@ -1,0 +1,11 @@
+# SPDX-FileCopyrightText: 2026 Keir Finlow-Bates
+#
+# SPDX-License-Identifier: MIT
+#
+# Name,   Type, SubType, Offset,  Size, Flags
+# 4 MB flash: factory 1 MB @0x10000; storage starts @0x110000. Remaining flash allows ~2.9 MB
+# for storage — here 2 MB FAT (was 1 MB ~992 KiB usable after FAT/WL overhead).
+nvs,      data, nvs,     0x9000,  0x6000,
+phy_init, data, phy,     0xf000,  0x1000,
+factory,  app,  factory, 0x10000, 1M,
+storage,  data, fat,     ,        2M,

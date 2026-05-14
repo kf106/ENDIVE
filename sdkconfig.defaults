@@ -1,0 +1,35 @@
+# SPDX-FileCopyrightText: 2026 Keir Finlow-Bates
+#
+# SPDX-License-Identifier: MIT
+#
+# ESP32-S3 Super Mini: 4 MB quad flash, 2 MB quad PSRAM, USB-C on native USB (GPIO19/20).
+
+CONFIG_ESPTOOLPY_FLASHSIZE_4MB=y
+CONFIG_ESPTOOLPY_FLASHMODE_QIO=y
+
+CONFIG_SPIRAM=y
+CONFIG_SPIRAM_MODE_QUAD=y
+CONFIG_SPIRAM_SPEED_80M=y
+
+# Console on UART (TX/RX). USB Serial/JTAG stays available whenever the TinyUSB device stack
+# is not installed (see main.c: MSC+CDC only after BOOT).
+CONFIG_ESP_CONSOLE_UART_DEFAULT=y
+CONFIG_ESP_CONSOLE_SECONDARY_NONE=y
+
+# Composite device: removable FAT disk + USB serial (CDC)
+CONFIG_TINYUSB_MSC_ENABLED=y
+CONFIG_TINYUSB_CDC_ENABLED=y
+# CONFIG_TINYUSB_DESC_USE_DEFAULT_PID is not set
+CONFIG_TINYUSB_DESC_CUSTOM_PID=0x4001
+
+# FAT "USB stick" partition behind wear levelling
+CONFIG_PARTITION_TABLE_CUSTOM=y
+CONFIG_PARTITION_TABLE_CUSTOM_FILENAME="partitions.csv"
+CONFIG_PARTITION_TABLE_FILENAME="partitions.csv"
+CONFIG_WL_SECTOR_SIZE_512=y
+CONFIG_WL_SECTOR_MODE_PERF=y
+CONFIG_FATFS_LFN_HEAP=y
+CONFIG_FATFS_USE_LABEL=y
+
+# Must match BASE_PATH in main.c so TinyUSB MSC callbacks remount the same VFS prefix.
+CONFIG_TINYUSB_MSC_MOUNT_PATH="/usb"
