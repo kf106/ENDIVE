@@ -1,4 +1,4 @@
-# ![Endive icon](/img/endive-48.png) Project Endive
+# ![Endive icon](img/endive-48.png) Project Endive
 
 I finally came up with an ESP32 project that has a real purpose, and isn't just a clock or a weather station.
 
