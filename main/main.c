@@ -78,7 +78,7 @@ static const char *TAG = "main";
 #define HOST_RELEASE_DEBOUNCE_MS 1000
 
 /** FAT volume label for MSC (host desktop name; max 11 chars for classic FAT). */
-#define MSC_FAT_VOLUME_LABEL "EnvDrive"
+#define MSC_FAT_VOLUME_LABEL "ENDIVE"
 
 /** WS2812 data (same pad as red power leg on many Super Minis — see file header). */
 #define STATUS_WS2812_GPIO 48
