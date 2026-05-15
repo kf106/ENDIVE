@@ -14,7 +14,7 @@ An ESP32-S3 Super Mini board can be bought for about $3-$4, has 4 MB of flash (a
 
 Yes, but here's the clever part. The board only presents the file system after you press a button on it. And it has a timer, which disconnects the drive after a given period of time, warning you with the standard on-board LED. Red means not connected, green means connected, and flashing yellow means about to disconnect (which gives you time to press the button again).
 
-If I used a USB drive, I'd forget to unplug it. Now I don't have to.
+If I used a USB drive, I'd forget to unplug it. Now I don't have to remember.
 
 ## Future plans
 
