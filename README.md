@@ -1,5 +1,32 @@
-# ESP32-S3 Super Mini — USB MSC + CDC “EnvDrive”
+# ![Endive icon](endive.png) Project Endive
 
+I finally came up with an ESP32 project that has a real purpose, and isn't just a clock or a weather station.
+
+As a sometime-developer I have projects in repositories that connect to API services with secret API token or that need to use a private cryptographic key for something. Like every other developer out there, I stick them in a .env file, and try to remember to exlude that file from my repository using a .gitignore file.
+
+Apart from the obvious problem that one thoughtless commit and push can reveal those secrets, there is the added problem that the .env file is always visible on my development machine. If that is compromised, so are all my tokens and keys. 
+
+Enter the EnvDrive. 
+
+An ESP32-S3 Super Mini board can be bought for about $3-$4, has 4 MB of flash (and typically 2 MB of PSRAM), and can be configured to act like a USB drive. That means I can use symlinks from all my projects to .env files on the board. 4MB can store a lot of ascii files.
+
+*Couldn't you do that with a standard USB drive, though?*
+
+Yes, but here's the clever part. The board only presents the file system after you press a button on it. And it has a timer, which disconnects the drive after a given period of time, warning you with the standard on-board LED. Red means not connected, green means connected, and flashing yellow means about to disconnect (which gives you time to press the button again).
+
+If I used a USB drive, I'd forget to unplug it. Now I don't have to.
+
+## Future plans
+
+Mark Jivko liked the idea, but had a few suggestions on how to improve it:
+
+1. Encrypt the file system on the non-volatile RAM, and decrypt it to the volatile RAM on demand. This needs some thoughts about how the decryption password can be entered. Perhaps over BLE from a phone app? Perhaps through an onboard web server?
+
+2. Have a "call home" feature, where the device tries to obtain an internet connection, and then checks whether the device is marked as stolen. If it is, it formats itself. Again, perhas the device only works if it has internet access through your phone through an app, or something.
+
+3. The firmware uses the boot button to trigger the mounting of the drive. That button is really awkward to press. What I'd really like is a nice case that shows the LED, and something like a TP223 touch key to replace pressing the little fiddly button. Those things are sensitive: you'll find a similar touch key on a Yubikey, for example.
+
+## Summary
 Firmware for **ESP32-S3 Super Mini** class boards (4 MB flash, USB-C on the native USB pins). At boot the chip keeps **USB Serial/JTAG** on the USB port so you can flash and monitor with `idf.py`. After a reset, press **BOOT (GPIO0)** to start a **USB composite device**: a removable **FAT** volume (wear-leveled internal flash) plus a **CDC serial** port. The host sees the disk as **EnvDrive**.
 
 Session length, warning blink timing, status LED behavior, and host eject handling are documented in the source header in `main/main.c`.
