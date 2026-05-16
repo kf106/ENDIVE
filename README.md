@@ -8,7 +8,7 @@ Apart from the obvious problem that one thoughtless commit and push can reveal t
 
 Enter **ENDIVE**. 
 
-An ESP32-S3 Super Mini board can be bought for about $3-$4, has 4 MB of flash (and typically 2 MB of PSRAM), and can be configured to act like a USB drive. That means I can use symlinks from all my projects to .env files on the board. 4MB can store a lot of ascii files.
+An ESP32-S3 Super Mini board can be bought for about $3-$4, has 4 MB of flash (and typically 2 MB of PSRAM), and can be configured to act like a USB drive. That means I can use symlinks from all my projects to .env files on the board. 4MB can store a lot of ascii files. (Note: this works with the ESP32-S3 board, but not the ESP32-C3 board, which does not support exposing filesystems over USB)
 
 *Couldn't you do that with a standard USB drive, though?*
 
