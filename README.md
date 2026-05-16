@@ -44,7 +44,7 @@ The on-board LED tells you what's happening at a glance:
 |---|---|
 | Red | Drive not connected |
 | Green | Drive connected |
-| Flashing yellow | Session about to expire — press BOOT to extend |
+| Flashing yellow | Session about to expire. Press BOOT to extend, or just let it disconnect. |
 
 Session length and warning timing are controlled by a `config` file in the root of the volume. Full details on all the timers and eject behaviour are in the header of `main/main.c`.
 
@@ -97,4 +97,4 @@ Build outputs and the local `sdkconfig` are excluded by `.gitignore`; board-spec
 
 ## License
 
-MIT — see `LICENSE`. Copyright (c) 2026 Keir Finlow-Bates.
+MIT. See `LICENSE`. Copyright (c) 2026 Keir Finlow-Bates.  
